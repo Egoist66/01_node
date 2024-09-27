@@ -4,7 +4,7 @@ import path from 'path'
 
 
 const __dirname = path.resolve('./')
-const PORT = 3002
+const PORT = 3003
 
 const app = http.createServer((req, res) => {
 

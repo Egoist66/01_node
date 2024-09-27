@@ -3,8 +3,10 @@ import fs from 'fs'
 import path from 'path'
 
 
+
+
 const __dirname = path.resolve('./')
-const PORT = 3003
+const PORT: number = 3003
 
 const app = http.createServer((req, res) => {
 
@@ -19,6 +21,7 @@ const app = http.createServer((req, res) => {
             console.log(err)
             return
         }
+
         res.end(data)
 
     })

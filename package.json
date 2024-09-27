@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch server/src --ext ts --exec \"tsc -p tsconfig.json && node dist/index.js\"",
+    "dev": "nodemon  --watch server/src --ext ts --exec \"tsc -p tsconfig.json && node dist/index.js\"",
     "build": "tsc -p tsconfig.json"
   },
   "author": "Farid",

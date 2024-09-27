@@ -21,7 +21,7 @@ export function checkType(value = null, type = function () {}) {
         return { msg: "Type Null does not have parent prototype" };
       }
   
-      if (value.__proto__ === type.prototype) {
+      if (value.__proto__  === type.prototype) {
         if (Array.isArray(value)) {
           return { type: "array", isValid: true };
         }

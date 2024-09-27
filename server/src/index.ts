@@ -22,7 +22,7 @@ const app = http.createServer((req, res) => {
             return
         }
 
-        res.end(data)
+        res.end(`${data}`)
 
     })
 })
@@ -31,3 +31,12 @@ app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })
 
+
+
+fs.stat(path.join(__dirname, '/client/index.html'), (err, stats) => {
+    if (err) {
+        console.log(err)
+        return
+    }
+  
+})

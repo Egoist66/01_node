@@ -1,7 +1,8 @@
-import http from "http";
+import http, { IncomingMessage } from "http";
 import fs from "fs";
 import path from "path";
 import { delay } from "./utils/delay.js";
+import { checkType } from "./utils/check-type.js";
 
 
 
@@ -10,6 +11,7 @@ const __dirname = path.resolve("./");
 const PORT: number = 3003;
 
 const app = http.createServer(async (req, res) => {
+  console.log(req.method, req.url);
   if (req.url === "/favicon.ico") {
     return;
   }

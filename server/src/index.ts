@@ -1,7 +1,7 @@
 import http from "http";
 import fs from "fs";
 import path from "path";
-import { emitters } from "./models/emitters.js";
+import { delay } from "./utils/delay.js";
 
 
 
@@ -9,31 +9,62 @@ import { emitters } from "./models/emitters.js";
 const __dirname = path.resolve("./");
 const PORT: number = 3003;
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   if (req.url === "/favicon.ico") {
     return;
   }
 
   res.writeHead(200, { "Content-Type": "text/html" });
-  fs.readFile(
-    path.join(__dirname, "/client/index.html"),
-    "utf8",
-    (err, data) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
+  if(!fs.existsSync(path.join(__dirname, "forterp.html"))){
 
-      res.end(`${data}`);
-    }
-  );
+    const data = await (await fetch('https://fortegrp.com')).text();
+
+    fs.writeFile('forterp.html', data, (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    });
+
+    await delay(1000);  
+
+    fs.readFile(
+      path.join(__dirname, "forterp.html"),
+      "utf8",
+      (err, data) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+  
+        res.end(`${data}`);
+      }
+    );
+   
+
+  }
+  else {
+
+    fs.readFile(
+      path.join(__dirname, "forterp.html"),
+      "utf8",
+      (err, data) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+  
+        res.end(`${data}`);
+      }
+    );
+   
+  }
+  
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server running on http://localhost:${PORT}`);
 
     //   emitters();
 
-
+   
 
 });
